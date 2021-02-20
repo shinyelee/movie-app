@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import LeftMenu from './Sections/LeftMenu';
 import RightMenu from './Sections/RightMenu';
-import { Drawer, Button, Icon } from 'antd';
+import { Drawer, Button } from 'antd';
+import Icon from '@ant-design/icons';
 import './Sections/Navbar.css';
-// 나중에 36 line에 아이콘 넣기 <Icon type="align-right" />
 
 function NavBar() {
   const [visible, setVisible] = useState(false)
@@ -33,7 +33,7 @@ function NavBar() {
           type="primary"
           onClick={showDrawer}
         >
-          
+          <Icon type="align-right" />
         </Button>
         <Drawer
           title="Basic Drawer"
