@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { API_URL, API_KEY, IMAGE_BASE_URL } from '../../../Config';
 import MainImage from '../../views/LandingPage/Sections/MainImage';
-
+import MovieInfo from './Sections/MovieInfo';
 function MovieDetail(props) {
 
     let movieId = props.match.params.movieId
@@ -38,6 +38,10 @@ function MovieDetail(props) {
             <div style={{ width: '85%', margin: '1rem auto' }}>
 
                 {/* Movie Info */}
+
+                <MovieInfo
+                    movie={Movie}
+                />
                 <br />
                 {/* Actors Grid */}
 
