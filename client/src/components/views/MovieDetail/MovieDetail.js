@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
+import { Button, Row } from 'antd';
+
 import { API_URL, API_KEY, IMAGE_BASE_URL } from '../../../Config';
+import GridCards from '../commons/GridCards';
 import MainImage from '../../views/LandingPage/Sections/MainImage';
 import MovieInfo from './Sections/MovieInfo';
-import GridCards from '../commons/GridCards';
 import Favorite from './Sections/Favorite';
-import { Button, Row } from 'antd';
 
 function MovieDetail(props) {
 
@@ -12,6 +13,9 @@ function MovieDetail(props) {
     const [Movie, setMovie] = useState([])
     const [Casts, setCasts] = useState([])
     const [ActorToggle, setActorToggle] = useState(false)
+    // const movieVariable = {
+    //     movieId: movieId
+    // }
 
     useEffect(() => {
 
