@@ -1,15 +1,18 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import './favorite.css';
 import Axios from 'axios';
+// import { set } from 'mongoose';
 
 function FavoritePage() {
+
+    const [Favorites, setFavorites] = useState([])
 
     useEffect(() => {
         
         Axios.post('/api/favorite/getFavoredMovie', { userFrom: localStorage.getItem('userId') })
             .then(response => {
                 if(response.data.success) {
-
+                    setFavorites(response.data.favorites)
                 } else {
                     alert('영화 정보를 가져오는 데 실패했습니다.')
                 }
@@ -30,6 +33,16 @@ function FavoritePage() {
                     </tr>
                 </thead>
                 <tbody>
+
+                { Favorites.map((favorite, index) => (
+                    <tr key={index}>
+
+                        <td> {favorite.movieTitle} </td>
+                        <td> {favorite.movieRunTime} mins</td>
+                        <td><button> Remove </button></td>
+                    
+                    </tr>
+                ))}
 
                 </tbody>
             </table>
