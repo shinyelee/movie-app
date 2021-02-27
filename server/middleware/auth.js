@@ -1,38 +1,20 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect } from 'react';
-import { auth } from '../_actions/user_actions';
-import { useSelector, useDispatch } from "react-redux";
+const { User } = require('../models/User');
 
-export default function (ComposedClass, reload, adminRoute = null) {
-    function AuthenticationCheck(props) {
+let auth = (req, res, next) => {
+  let token = req.cookies.w_auth;
 
-        let user = useSelector(state => state.user);
-        const dispatch = useDispatch();
+  User.findByToken(token, (err, user) => {
+    if (err) throw err;
+    if (!user)
+      return res.json({
+        isAuth: false,
+        error: true
+      });
 
-        useEffect(() => {
+    req.token = token;
+    req.user = user;
+    next();
+  });
+};
 
-            dispatch(auth()).then(response => {
-                if (!response.payload.isAuth) {
-                    if (reload) {
-                        props.history.push('/login')
-                    }
-                } else {
-                    if (adminRoute && !response.payload.isAdmin) {
-                        props.history.push('/')
-                    }
-                    else {
-                        if (reload === false) {
-                            props.history.push('/')
-                        }
-                    }
-                }
-            })
-
-        }, [])
-
-        return (
-            <ComposedClass {...props} user={user} />
-        )
-    }
-    return AuthenticationCheck
-}
+module.exports = { auth };
