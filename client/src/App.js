@@ -9,7 +9,6 @@ import NavBar from './components/views/NavBar/NavBar';
 import Footer from './components/views/Footer/Footer';
 import MovieDetail from './components/views/MovieDetail/MovieDetail';
 import FavoritePage from './components/views/FavoritePage/FavoritePage';
-import Favorite from './components/views/MovieDetail/Sections/Favorite';
 
 function App() {
   return (

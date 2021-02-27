@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { Button, Row } from 'antd';
-
 import { API_URL, API_KEY, IMAGE_BASE_URL } from '../../../Config';
-import GridCards from '../commons/GridCards';
-import MainImage from '../../views/LandingPage/Sections/MainImage';
+import MainImage from '../LandingPage/Sections/MainImage'
 import MovieInfo from './Sections/MovieInfo';
+import GridCards from '../commons/GridCards';
 import Favorite from './Sections/Favorite';
+import { Row } from 'antd';
 
 function MovieDetail(props) {
 
@@ -13,9 +12,6 @@ function MovieDetail(props) {
     const [Movie, setMovie] = useState([])
     const [Casts, setCasts] = useState([])
     const [ActorToggle, setActorToggle] = useState(false)
-    // const movieVariable = {
-    //     movieId: movieId
-    // }
 
     useEffect(() => {
 
@@ -28,7 +24,11 @@ function MovieDetail(props) {
             .then(response => {
                 console.log(response)
                 setMovie(response)
+
             })
+
+
+
 
         fetch(endpointCrew)
             .then(response => response.json())
@@ -36,16 +36,20 @@ function MovieDetail(props) {
                 setCasts(response.cast)
             })
 
+
+
     }, [])
 
     const toggleActorView = () => {
         setActorToggle(!ActorToggle)
     }
 
+
     return (
         <div>
 
             {/* Header */}
+
 
             <MainImage
                 image={`${IMAGE_BASE_URL}w1280${Movie.backdrop_path}`}
@@ -53,26 +57,29 @@ function MovieDetail(props) {
                 text={Movie.overview}
             />
 
-            {/* Body */}
 
+            {/* Body */}
             <div style={{ width: '85%', margin: '1rem auto' }}>
 
                 <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                    <Favorite   movieInfo={Movie} movieId={movieId} userFrom={localStorage.getItem('userId')} />
+                    <Favorite    movieInfo={Movie} movieId={movieId}  userFrom={localStorage.getItem('userId')}  />
                 </div>
+
 
                 {/* Movie Info */}
 
                 <MovieInfo
                     movie={Movie}
                 />
-                <br />
 
+
+                <br />
                 {/* Actors Grid */}
 
                 <div style={{ display: 'flex', justifyContent: 'center', margin: '2rem' }}>
-                    <Button onClick={toggleActorView}> Toggle Actor View </Button>
+                    <button onClick={toggleActorView}> Toggle Actor View </button>
                 </div>
+
 
                 {ActorToggle &&
                     <Row gutter={[16, 16]} >
@@ -90,7 +97,10 @@ function MovieDetail(props) {
                     </Row>
                 }
 
+
+
             </div>
+
 
         </div>
     )
