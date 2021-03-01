@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
+import { Row, Button } from 'antd';
+
+import Comments from './Sections/Comments'
 import { API_URL, API_KEY, IMAGE_BASE_URL } from '../../../Config';
+import GridCards from '../commons/GridCards';
 import MainImage from '../LandingPage/Sections/MainImage'
 import MovieInfo from './Sections/MovieInfo';
-import GridCards from '../commons/GridCards';
 import Favorite from './Sections/Favorite';
-import { Row, Button } from 'antd';
 
 function MovieDetail(props) {
 
@@ -97,7 +99,8 @@ function MovieDetail(props) {
                     </Row>
                 }
 
-
+                {/* Comments */}
+                <Comments />
 
             </div>
 
