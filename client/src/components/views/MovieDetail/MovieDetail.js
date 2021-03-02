@@ -100,7 +100,7 @@ function MovieDetail(props) {
                 }
 
                 {/* Comments */}
-                <Comments />
+                <Comments postId={movieId} />
 
             </div>
 
