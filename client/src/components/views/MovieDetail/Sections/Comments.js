@@ -1,11 +1,15 @@
 import React, { useState }  from 'react'
+import { Button, Input, Typography } from 'antd';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 import SingleComment from './SingleComment';
 
+const { TextArea } = Input;
+const { Title } = Typography;
+
 function Comments(props) {
 
-    const movieId = props.postId;
+    // const movieId = props.postId;
 
     const user = useSelector(state => state.user);
     const [Comment, setComment] = useState("")
@@ -16,6 +20,10 @@ function Comments(props) {
 
     const onSubmit = (e) => {
         e.preventDefault();
+
+        if (user.userData && !user.userData.isAuth) {
+            return alert('Please Log in first');
+        }
 
         const variables = {
             content: Comment,
@@ -28,6 +36,8 @@ function Comments(props) {
         .then(response => {
             if(response.data.success) {
                 console.log(response.data.result)
+                setComment("")
+                props.refreshFunction(response.data.result)
             } else {
                 alert('댓글 저장에 실패했습니다.')
             }
@@ -37,16 +47,25 @@ function Comments(props) {
     return (
         <div>
             <br />
-            <p> Replies </p>
+            <Title level={3} > Share your opinions about {props.movieTitle} </Title>
             <hr />
 
             {/* Coment Lists */}
+            {console.log(props.CommentLists)}
 
-            {props.commentLists && props.commentLists.map((comment, index) => (
+            {props.CommentLists && props.CommentLists.map((comment, index) => (
                 (!comment.responseTo &&
-                    <SingleComment comment={comment} postId={props.postId} />
+                    <React.Fragment>
+                        <SingleComment comment={comment} postId={props.postId} refreshFunction={props.refreshFunction} />
+                    </React.Fragment>
                 )
             ))}
+            
+            {props.CommentLists && props.CommentLists.length === 0 &&
+                <div style={{ display: 'flex', justifyContent:'center', alignItems:'center', height:'200px'}} >
+                    Be the first one who shares your thought about this movie
+                </div>
+            }
 
             {/* Root Comment Form */}
 
@@ -58,7 +77,7 @@ function Comments(props) {
                     placeholder="댓글을 작성해 주세요"
                 />
                 <br />
-                <button style={{ width: '20%', height: '52px' }} onClick={onSubmit}> Submit </button>
+                <Button style={{ width: '20%', height: '52px' }} onClick={onSubmit}> Submit </Button>
             </form>
 
         </div>
