@@ -3,13 +3,12 @@ import { Button, Input, Typography } from 'antd';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 import SingleComment from './SingleComment';
+import ReplyComment from './ReplyComment';
 
 const { TextArea } = Input;
 const { Title } = Typography;
 
 function Comments(props) {
-
-    // const movieId = props.postId;
 
     const user = useSelector(state => state.user);
     const [Comment, setComment] = useState("")
@@ -22,7 +21,7 @@ function Comments(props) {
         e.preventDefault();
 
         if (user.userData && !user.userData.isAuth) {
-            return alert('Please Log in first');
+            return alert('로그인이 필요합니다.');
         }
 
         const variables = {
@@ -57,6 +56,7 @@ function Comments(props) {
                 (!comment.responseTo &&
                     <React.Fragment>
                         <SingleComment comment={comment} postId={props.postId} refreshFunction={props.refreshFunction} />
+                        <ReplyComment CommentLists={props.CommentLists} postId={props.postId} parentCommentId={comment._id} refreshFunction={props.refreshFunction} />
                     </React.Fragment>
                 )
             ))}
