@@ -8,12 +8,9 @@ import MovieInfo from './Sections/MovieInfo';
 import Favorite from './Sections/Favorite';
 import Comments from './Sections/Comments';
 
-function MovieDetail(props) {
+function MovieDetailPage(props) {
 
     const movieId = props.match.params.movieId
-    const movieVariable = {
-        movieId: movieId
-    }
 
     const [Movie, setMovie] = useState([])
     const [Casts, setCasts] = useState([])
@@ -21,6 +18,9 @@ function MovieDetail(props) {
     const [LoadingForMovie, setLoadingForMovie] = useState(true)
     const [LoadingForCasts, setLoadingForCasts] = useState(true)
     const [ActorToggle, setActorToggle] = useState(false)
+    const movieVariable = {
+        movieId: movieId
+    }
 
     useEffect(() => {
 
@@ -137,4 +137,4 @@ function MovieDetail(props) {
     )
 }
 
-export default MovieDetail
+export default MovieDetailPage

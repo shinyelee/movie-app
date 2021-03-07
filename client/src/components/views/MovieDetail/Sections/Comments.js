@@ -1,6 +1,6 @@
 import React, { useState }  from 'react'
 import { Button, Input, Typography } from 'antd';
-import axios from 'axios';
+import Axios from 'axios';
 import { useSelector } from 'react-redux';
 import SingleComment from './SingleComment';
 import ReplyComment from './ReplyComment';
@@ -12,17 +12,18 @@ function Comments(props) {
 
     const user = useSelector(state => state.user);
     const [Comment, setComment] = useState("")
+    const postId = props.postId
 
     const handleChange = (e) => {
-        setComment(e.currentTarget.value)
+        if(user.userData._id) {
+            setComment(e.currentTarget.value)
+        } else {
+            alert('로그인 후 댓글을 작성할 수 있습니다.')
+        }
     }
 
     const onSubmit = (e) => {
         e.preventDefault();
-
-        if (user.userData && !user.userData.isAuth) {
-            return alert('로그인이 필요합니다.');
-        }
 
         const variables = {
             content: Comment,
@@ -31,17 +32,24 @@ function Comments(props) {
         }
         console.log(variables)
 
-        axios.post('/api/comment/saveComment', variables)
-        .then(response => {
-            if(response.data.success) {
-                console.log(response.data.result)
-                setComment("")
-                props.refreshFunction(response.data.result)
-            } else {
-                alert('댓글 저장에 실패했습니다.')
-            }
-        })
+        if(user.userData._id) {
+            Axios.post('/api/comment/saveComment', variables)
+            .then(response => {
+                if(response.data.success) {
+                    console.log(response.data.result)
+                    setComment("")
+                    props.refreshFunction(response.data.result)
+                } else {
+                    alert('댓글 입력에 실패했습니다.')
+                }
+            })
+        } else {
+            alert('로그인 후 댓글을 작성할 수 있습니다.')
+        }
     }
+    // props.CommentLists.map((comment, index)=>{
+    //     console.log(comment)
+    // })
 
     return (
         <div>
@@ -54,9 +62,9 @@ function Comments(props) {
 
             {props.CommentLists && props.CommentLists.map((comment, index) => (
                 (!comment.responseTo &&
-                    <React.Fragment>
+                    <React.Fragment key={comment._id}>
                         <SingleComment comment={comment} postId={props.postId} refreshFunction={props.refreshFunction} />
-                        <ReplyComment CommentLists={props.CommentLists} postId={props.postId} parentCommentId={comment._id} refreshFunction={props.refreshFunction} />
+                        <ReplyComment parentCommentId={comment._id} postId={props.postId} CommentLists={props.CommentLists} refreshFunction={props.refreshFunction} />
                     </React.Fragment>
                 )
             ))}
@@ -70,7 +78,7 @@ function Comments(props) {
             {/* Root Comment Form */}
 
             <form style={{ display: 'flex' }} onSubmit={onSubmit}>
-                <textarea
+                <TextArea
                     style={{ width: '100%', borderRadius: '5px' }}
                     onChange={handleChange}
                     value={Comment}
