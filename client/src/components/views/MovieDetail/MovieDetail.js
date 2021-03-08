@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Row, Button } from 'antd';
-import axios from 'axios';
+import Axios from 'axios';
 
 import Comments from './Sections/Comments';
 import LikeDislikes from './Sections/LikeDislikes';
@@ -29,7 +29,7 @@ function MovieDetailPage(props) {
         let endpointForMovieInfo = `${API_URL}movie/${movieId}?api_key=${API_KEY}&language=en-US`;
         fetchDetailInfo(endpointForMovieInfo)
 
-        axios.post('/api/comment/getComments', movieVariable)
+        Axios.post('/api/comment/getComments', movieVariable)
         .then(response => {
             console.log(response)
             if (response.data.success) {
@@ -132,7 +132,7 @@ function MovieDetailPage(props) {
 
                 {/* likeDislikes */}
                 <div style={{ display: 'flex', justifyContent: 'center' }}>
-                    <LikeDislikes />
+                    <LikeDislikes video videoId={movieId} userId={localStorage.getItem('userId')} />
                 </div>
 
                 {/* Comments */}
