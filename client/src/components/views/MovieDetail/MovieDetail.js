@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { Row, Button } from 'antd';
 import axios from 'axios';
+
+import Comments from './Sections/Comments';
+import LikeDislikes from './Sections/LikeDislikes';
 import { API_URL, API_KEY, IMAGE_BASE_URL } from '../../../Config';
 import GridCards from '../commons/GridCards';
 import MainImage from '../LandingPage/Sections/MainImage';
 import MovieInfo from './Sections/MovieInfo';
 import Favorite from './Sections/Favorite';
-import Comments from './Sections/Comments';
 
 function MovieDetailPage(props) {
 
@@ -104,6 +106,7 @@ function MovieDetailPage(props) {
 
 
                 <br />
+                
                 {/* Actors Grid */}
 
                 <div style={{ display: 'flex', justifyContent: 'center', margin: '2rem' }}>
@@ -126,6 +129,11 @@ function MovieDetailPage(props) {
                     </Row>
                 }
                 <br />
+
+                {/* likeDislikes */}
+                <div style={{ display: 'flex', justifyContent: 'center' }}>
+                    <LikeDislikes />
+                </div>
 
                 {/* Comments */}
                 <Comments movieTitle={Movie.original_title} CommentLists={CommentLists} postId={movieId} refreshFunction={updateComment} />
