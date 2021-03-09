@@ -2,8 +2,11 @@ import React, { useEffect, useState } from 'react'
 import { Tooltip } from 'antd';
 import Icon from '@ant-design/icons';
 import Axios from 'axios';
+import { useSelector } from 'react-redux';
 
 function LikeDislikes(props) {
+
+    const user = useSelector(state => state.user)
 
     const [Likes, setLikes] = useState(0)
     const [Dislikes, setDislikes] = useState(0)
@@ -32,7 +35,7 @@ function LikeDislikes(props) {
                         }
                     })
                 } else {
-                    alert('Like 정보를 가져오는데 실패했습니다.')
+                    alert('좋아요 정보를 가져오는데 실패했습니다.')
                 }
             })
         
@@ -42,7 +45,6 @@ function LikeDislikes(props) {
                 if (response.data.success) {
                     // 얼마나 많은 싫어요를 받았는지
                     setDislikes(response.data.dislikes.length)
-
                     // 내가 이미 그 싫어요를 눌렀는지
                     response.data.dislikes.map(dislike => {
                         if (dislike.userId === props.userId) {
@@ -50,11 +52,85 @@ function LikeDislikes(props) {
                         }
                     })
                 } else {
-                    alert('Dislike 정보를 가져오는데 실패했습니다.')
+                    alert('싫어요 정보를 가져오는데 실패했습니다.')
                 }
             })
     
     }, [])
+
+    const onLike = () => {
+
+        if (user.userData && !user.userData.isAuth) {
+            return alert('로그인이 필요합니다.');
+        }
+
+        if (LikeAction === null) {
+
+            Axios.post('/api/like/upLike', variable)
+                .then(response => {
+                    if (response.data.success) {
+                        setLikes(Likes + 1)
+                        setLikeAction('liked')
+                        // 만약 Dislike를 이미 클릭했다면 -1 해줌
+                        if (DislikeAction !== null) {
+                            setDislikeAction(null)
+                            setDislikes(Dislikes - 1)
+                        }
+                    } else {
+                        alert('좋아요 반영에 실패했습니다.')
+                    }
+                })
+
+        } else {
+
+            Axios.post('/api/like/unLike', variable)
+                .then(response => {
+                    if (response.data.success) {
+                        setLikes(Likes - 1)
+                        setLikeAction(null)
+                    } else {
+                        alert('좋아요 취소에 실패했습니다.')
+                    }
+                })
+        }
+    }
+
+    const onDisLike = () => {
+
+        if (user.userData && !user.userData.isAuth) {
+            return alert('로그인이 필요합니다.');
+        }
+
+        if (DislikeAction !== null) {
+
+            Axios.post('/api/like/unDisLike', variable)
+                .then(response => {
+                    if (response.data.success) {
+                        setDislikes(Dislikes - 1)
+                        setDislikeAction(null)
+                    } else {
+                        alert('싫어요 반영에 실패했습니다.')
+                    }
+                })
+
+        } else {
+
+            Axios.post('/api/like/upDisLike', variable)
+                .then(response => {
+                    if (response.data.success) {
+                        setDislikes(Dislikes + 1)
+                        setDislikeAction('disliked')
+                        // 만약 Like를 이미 클릭했다면 -1 해줌
+                        if(LikeAction !== null ) {
+                            setLikeAction(null)
+                            setLikes(Likes - 1)
+                        }
+                    } else {
+                        alert('싫어요 취소에 실패했습니다.')
+                    }
+                })
+        }
+    }
 
     return (
         <div>
@@ -62,7 +138,7 @@ function LikeDislikes(props) {
                 <Tooltip title="like">
                     <Icon type="like"
                           theme={LikeAction === 'liked' ? 'filled' : 'outlined'}
-                          onClick />
+                          onClick={onLike} />
                 </Tooltip>
                 <span style={{ paddingLeft: '8px', cursor: 'auto' }}> {Likes} </span>
             </span>
@@ -71,7 +147,7 @@ function LikeDislikes(props) {
                 <Tooltip title="Dislike">
                     <Icon type="dislike"
                           theme={DislikeAction === 'disliked' ? 'filled' : 'outlined'}
-                          onClick />
+                          onClick={onDisLike} />
                 </Tooltip>
                 <span style={{ paddingLeft: '8px', cursor: 'auto' }}> {Dislikes} </span>
             </span>
