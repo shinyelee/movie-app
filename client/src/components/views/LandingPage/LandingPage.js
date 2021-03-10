@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { FaCode } from "react-icons/fa";
-import Icon from '@ant-design/icons';
 import { API_URL, API_KEY, IMAGE_BASE_URL } from '../../../Config';
 import MainImage from './Sections/MainImage';
 import axios from 'axios';
