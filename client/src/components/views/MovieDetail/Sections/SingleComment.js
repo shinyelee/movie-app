@@ -6,6 +6,7 @@ import LikeDislikes from './LikeDislikes';
 
 const { TextArea } = Input;
 function SingleComment(props) {
+
     const user = useSelector(state => state.user);
     const [CommentValue, setCommentValue] = useState("")
     const [OpenReply, setOpenReply] = useState(false)
@@ -49,8 +50,8 @@ function SingleComment(props) {
     }
 
     const actions = [
-        <LikeDislikes userId={localStorage.getItem('userId')} commentId={props.comment._id} />
-        ,<span onClick={openReply} key="comment-basic-reply-to"> Reply to </span>
+        <LikeDislikes comment commentId={props.comment._id} userId={localStorage.getItem('userId')} />,
+        <span onClick={openReply} key="comment-basic-reply-to"> Reply to </span>
     ]
 
     return (
@@ -58,7 +59,9 @@ function SingleComment(props) {
             <Comment
                 actions={actions}
                 author={props.comment.writer.name}
-                avatar={<Avatar src={props.comment.writer.image} alt=""/>}
+                avatar={<Avatar
+                        src={props.comment.writer.image}
+                        alt=""/>}
                 content={ <p> {props.comment.content} </p> }
             />
 
@@ -68,7 +71,7 @@ function SingleComment(props) {
                     style={{ width: '100%', borderRadius: '5px' }}
                     onChange={handleChange}
                     value={CommentValue}
-                    placeholder="댓글을 작성해 주세요"
+                    placeholder="댓글을 작성해 주세요."
                 />
                 <br />
                 <Button style={{ width: '20%', height: '52px' }} onClick={onSubmit}> Submit </Button>

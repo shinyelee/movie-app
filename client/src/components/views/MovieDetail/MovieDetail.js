@@ -20,9 +20,8 @@ function MovieDetailPage(props) {
     const [LoadingForMovie, setLoadingForMovie] = useState(true)
     const [LoadingForCasts, setLoadingForCasts] = useState(true)
     const [ActorToggle, setActorToggle] = useState(false)
-    const movieVariable = {
-        movieId: movieId
-    }
+    
+    const movieVariable = { movieId: movieId }
 
     useEffect(() => {
 
@@ -30,15 +29,15 @@ function MovieDetailPage(props) {
         fetchDetailInfo(endpointForMovieInfo)
 
         Axios.post('/api/comment/getComments', movieVariable)
-        .then(response => {
-            console.log(response)
-            if (response.data.success) {
-                console.log('response.data.comments', response.data.comments)
-                setCommentLists(response.data.comments)
-            } else {
-                alert('댓글 정보를 가져오는데 실패했습니다.')
-            }
-        })
+            .then(response => {
+                console.log(response)
+                if (response.data.success) {
+                    console.log('response.data.comments', response.data.comments)
+                    setCommentLists(response.data.comments)
+                } else {
+                    alert('댓글 정보를 가져오는데 실패했습니다.')
+                }
+            })
 
     }, [])
 
@@ -49,24 +48,24 @@ function MovieDetailPage(props) {
     const fetchDetailInfo = (endpoint) => {
 
         fetch(endpoint)
-        .then(result => result.json())
-        .then(result => {
-            console.log(result)
-            setMovie(result)
-            setLoadingForMovie(false)
+            .then(result => result.json())
+            .then(result => {
+                console.log(result)
+                setMovie(result)
+                setLoadingForMovie(false)
 
-            let endpointForCasts = `${API_URL}movie/${movieId}/credits?api_key=${API_KEY}`;
-            fetch(endpointForCasts)
-                .then(result => result.json())
-                .then(result => {
-                    console.log(result)
-                    setCasts(result.cast)
-                })
+                let endpointForCasts = `${API_URL}movie/${movieId}/credits?api_key=${API_KEY}`;
+                fetch(endpointForCasts)
+                    .then(result => result.json())
+                    .then(result => {
+                        console.log(result)
+                        setCasts(result.cast)
+                    })
 
-            setLoadingForCasts(false)
-        })
-        .catch(error => console.error('Error:', error)
-        )
+                setLoadingForCasts(false)
+            })
+            .catch(error => console.error('Error:', error)
+            )
     }
 
     const updateComment = (newComment) => {
@@ -95,15 +94,12 @@ function MovieDetailPage(props) {
                     <Favorite movieInfo={Movie} movieId={movieId} userFrom={localStorage.getItem('userId')}  />
                 </div>
 
-
                 {/* Movie Info */}
-
                 {!LoadingForMovie ?
                     <MovieInfo movie={Movie} />
                     :
                     <div>loading...</div>
                 }
-
 
                 <br />
                 

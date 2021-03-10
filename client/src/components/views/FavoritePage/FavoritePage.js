@@ -50,8 +50,8 @@ function FavoritePage() {
             <div>
                 {favorite.moviePost ?
                 
-                    <img src={`${IMAGE_BASE_URL}w500${favorite.moviePost}`} /> : "no image"}
-                
+                    <img src={`${IMAGE_BASE_URL}w500${favorite.moviePost}`} /> : "no image"
+                }
             </div>
         )
 
@@ -62,7 +62,7 @@ function FavoritePage() {
             </Popover>
 
             <td> {favorite.movieRunTime} mins</td>
-            <td><Button onClick={() => onClickDelete(favorite.movieId, favorite.userFrom)}> Remove </Button></td>
+            <td> <Button onClick={() => onClickDelete(favorite.movieId, favorite.userFrom)}> Remove </Button></td>
         
         </tr>
     })

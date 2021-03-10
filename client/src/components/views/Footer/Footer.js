@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { SmileOutlined } from '@ant-design/icons';
 
 function Footer() {
@@ -8,7 +8,7 @@ function Footer() {
             flexDirection: 'column', alignItems: 'center',
             justifyContent: 'center', fontSize:'1rem'
         }}>
-           <p> Happy Coding <SmileOutlined /></p>
+           <p> shinyelee <SmileOutlined /></p>
         </div>
     )
 }

@@ -12,7 +12,6 @@ function Comments(props) {
 
     const user = useSelector(state => state.user);
     const [Comment, setComment] = useState("")
-    const postId = props.postId
 
     const handleChange = (e) => {
         if(user.userData._id) {
@@ -47,9 +46,6 @@ function Comments(props) {
             alert('로그인 후 댓글을 작성할 수 있습니다.')
         }
     }
-    // props.CommentLists.map((comment, index)=>{
-    //     console.log(comment)
-    // })
 
     return (
         <div>
@@ -82,7 +78,7 @@ function Comments(props) {
                     style={{ width: '100%', borderRadius: '5px' }}
                     onChange={handleChange}
                     value={Comment}
-                    placeholder="댓글을 작성해 주세요"
+                    placeholder="댓글을 작성해 주세요."
                 />
                 <br />
                 <Button style={{ width: '20%', height: '52px' }} onClick={onSubmit}> Submit </Button>

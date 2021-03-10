@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { FaCode } from "react-icons/fa";
 import { API_URL, API_KEY, IMAGE_BASE_URL } from '../../../Config';
 import MainImage from './Sections/MainImage';
-import axios from 'axios';
 import GridCards from '../commons/GridCards';
-import { Row } from 'antd';
+import { Row, Button } from 'antd';
 
 function LandingPage() {
 
@@ -76,7 +74,7 @@ function LandingPage() {
             </div>
 
             <div style={{ display: 'flex', justifyContent: 'center' }}>
-                <button onClick={loadMoreItems}> Load More </button>
+                <Button onClick={loadMoreItems}> Load More </Button>
             </div>
 
         </div>
