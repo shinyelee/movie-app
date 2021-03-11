@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import './favorite.css';
 import Axios from 'axios';
 import { Popover, Button } from 'antd';
+import { DeleteOutlined } from '@ant-design/icons';
 import { IMAGE_BASE_URL } from '../../../Config';
 
 function FavoritePage() {
@@ -62,7 +63,7 @@ function FavoritePage() {
             </Popover>
 
             <td> {favorite.movieRunTime} mins</td>
-            <td> <Button onClick={() => onClickDelete(favorite.movieId, favorite.userFrom)}> Remove </Button></td>
+            <td> <Button onClick={() => onClickDelete(favorite.movieId, favorite.userFrom)}><DeleteOutlined />Remove </Button></td>
         
         </tr>
     })

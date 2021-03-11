@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Row, Button } from 'antd';
 import Axios from 'axios';
+import { PushpinOutlined } from '@ant-design/icons';
 
 import Comments from './Sections/Comments';
 import LikeDislikes from './Sections/LikeDislikes';
@@ -106,7 +107,7 @@ function MovieDetailPage(props) {
                 {/* Actors Grid */}
 
                 <div style={{ display: 'flex', justifyContent: 'center', margin: '2rem' }}>
-                    <Button onClick={toggleActorView}> Toggle Actor View </Button>
+                    <Button onClick={toggleActorView}><PushpinOutlined />Cast </Button>
                 </div>
 
 
