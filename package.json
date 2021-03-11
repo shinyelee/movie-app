@@ -1,15 +1,16 @@
 {
-  "name": "boiler-plate",
+  "name": "movie-app",
   "version": "1.0.0",
-  "description": "",
+  "description": "react movie-app",
   "main": "index.js",
   "scripts": {
     "start": "node server/index.js",
     "backend": "nodemon server/index.js",
+    "frontend": "npm run start --prefix client",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "concurrently \"npm run backend\" \"npm run start --prefix client\""
   },
-  "author": "john-ahn",
+  "author": "shinyelee",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.0.0",
