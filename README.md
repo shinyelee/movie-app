@@ -1,19 +1,58 @@
-boiler-plate-ko is being sponsored by the following tool <br />
-Please help to support us by taking a look and signing up to a free trial
-<a href="https://tracking.gitads.io/?repo=boiler-plate-ko"><img src="https://images.gitads.io/boiler-plate-ko" alt="GitAds"/></a> 
+# 영화 - 무빙(Movie-ing)
 
+![img](https://user-images.githubusercontent.com/68595933/111911491-32b8a580-8aa9-11eb-9eda-4584659ee1cd.PNG)
 
-안녕하세요^^ 
+[깃허브](https://github.com/shinyelee/movie-app)
+[블로그](https://shinye0213.tistory.com/category/PROJECT/Node.js%20React)
+[유튜브]()
 
-이 어플리케이션을 사용하기 위해선 
+## 목차
+__1. 개요__  
+__2. 개발환경__  
+__3. 기능__  
+__4. DB설계__  
 
-1. dev.js file을 config 폴더 안에 생성해주세요.  
-2. mongoDB 정보를 dev.js file안에다가 넣어주세요. 
-3. " npm install "을 root directory에서 입력해주세요.  (백엔드 종속성 다운받기) 
-4. " npm install "을 client directory에서 입력해주세요.  (프론트엔드 종속성 다운받기) 
-
-이 강의는 아래 보이는 링크를 통해서 보실수 있습니다. 
-
-https://www.youtube.com/watch?v=fgoMqmNKE18&list=PL9a7QRYt5fqkZC9jc7jntD1WuAogjo_9T
-
-감사합니다 ^^.
+---
+## 개요
++ __1.1 주제/목표__  
+  - 최신영화정보 웹 사이트
++ __1.2 개발기간__  
+  - 2021.02.16~2021.03.11
+---
+## 개발환경
++ __2.1 사용 언어__
+  - HTML5/CSS3
+  - JavaScript ES6
+  - Node.js 14
++ __2.2 라이브러리/프레임워크__
+  - Express.js 4.17
+  - React
+  - Ant Design 4  
++ __2.3 데이터베이스__
+  - MongoDB 4  
++ __2.4 운영체제__
+  - Windows 10
++ __2.5 개발도구__
+  - Visual Studio Code 1.54
++ __2.6 버전관리__
+  - GitHub
+---
+## 기능 (상세설명 수정중)
++ __3.1 주요기능__  
+  - 3.1.1 최신영화정보  
+  - 3.1.2 영화 목록 페이징  
+  - 3.1.3 출연진 토글 버튼  
+  - 3.1.4 댓글(무한 대댓글)  
+  - 3.1.5 좋아요/싫어요  
++ __3.2 회원관리__  
+  - 3.2.1 가입/탈퇴  
+  - 3.2.2 아이디 기억  
+  - 3.2.3 비밀번호 암호화  
++ __3.3 하트(Favorite)__  
+  - 3.3.1 리스트 담기/취소  
+  - 3.3.2 포스터 썸네일  
++ __3.4 기타__  
+  - 3.4.1 반응형 화면  
+---
+## DB설계
++ __(이미지 수정중)__

@@ -1,7 +1,7 @@
 {
-  "name": "movie-app",
+  "name": "movie-ing",
   "version": "1.0.0",
-  "description": "react movie-app",
+  "description": "react movie app",
   "main": "index.js",
   "scripts": {
     "start": "node server/index.js",

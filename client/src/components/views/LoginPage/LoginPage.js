@@ -82,7 +82,7 @@ function LoginPage(props) {
         return (
           <div className="app">
 
-            <Title level={2}>Login</Title>
+            <Title level={2}> Login </Title>
             <form onSubmit={handleSubmit} style={{ width: '350px' }}>
 
               <Form.Item required>
@@ -132,10 +132,10 @@ function LoginPage(props) {
                   </a> */}
                 <div>
                   <Button type="primary" htmlType="submit" className="login-form-button" style={{ minWidth: '100%' }} disabled={isSubmitting} onSubmit={handleSubmit}>
-                    Login
+                    Login 
                 </Button>
                 </div>
-                Or <a href="/register">register now!</a>
+                Or <a href="/register"> register now!</a>
               </Form.Item>
             </form>
           </div>

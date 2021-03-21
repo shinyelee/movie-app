@@ -1,5 +1,5 @@
 import React from 'react';
-import { SmileOutlined } from '@ant-design/icons';
+import { VideoCameraOutlined } from '@ant-design/icons';
 
 function Footer() {
     return (
@@ -8,7 +8,7 @@ function Footer() {
             flexDirection: 'column', alignItems: 'center',
             justifyContent: 'center', fontSize:'1rem'
         }}>
-           <p> shinyelee <SmileOutlined /></p>
+           <p> <VideoCameraOutlined /> https://github.com/shinyelee/Movie-ing </p>
         </div>
     )
 }

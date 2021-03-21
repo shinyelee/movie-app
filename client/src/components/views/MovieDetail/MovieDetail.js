@@ -85,7 +85,7 @@ function MovieDetailPage(props) {
                     text={Movie.overview}
                 />
                 :
-                <div>loading...</div>
+                <div> Loading... </div>
             }
 
             {/* Body */}
@@ -99,7 +99,7 @@ function MovieDetailPage(props) {
                 {!LoadingForMovie ?
                     <MovieInfo movie={Movie} />
                     :
-                    <div>loading...</div>
+                    <div> Loading... </div>
                 }
 
                 <br />
@@ -107,7 +107,7 @@ function MovieDetailPage(props) {
                 {/* Actors Grid */}
 
                 <div style={{ display: 'flex', justifyContent: 'center', margin: '2rem' }}>
-                    <Button onClick={toggleActorView}><PushpinOutlined />Cast </Button>
+                    <Button onClick={toggleActorView}><PushpinOutlined /> Cast </Button>
                 </div>
 
 
@@ -121,7 +121,7 @@ function MovieDetailPage(props) {
                                         `${IMAGE_BASE_URL}w500${cast.profile_path}` : null}
                                     characterName={cast.name}
                                 />)) :
-                                <div>loading...</div>
+                                <div> Loading... </div>
                         }
                     </Row>
                 }
